@@ -1,0 +1,26 @@
+# -----------------------------
+# Python cache
+# -----------------------------
+__pycache__/
+*.pyc
+*.pyo
+
+# -----------------------------
+# Local login/logout logs (do NOT push)
+# -----------------------------
+login_logs/
+*.log
+
+# -----------------------------
+# Virtual environments / env files
+# -----------------------------
+venv/
+.env
+
+# -----------------------------
+# Editor / system junk
+# -----------------------------
+*.swp
+*.service~
+.DS_Store
+Thumbs.db

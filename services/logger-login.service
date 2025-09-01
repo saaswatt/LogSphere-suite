@@ -1,0 +1,10 @@
+﻿[Unit]
+Description=Login Time Logger
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/python3 %h/LogSphere/scripts/logger.py
+Type=oneshot
+
+[Install]
+WantedBy=default.target

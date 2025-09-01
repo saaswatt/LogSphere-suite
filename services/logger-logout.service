@@ -1,0 +1,13 @@
+[Unit]
+Description=Logout Time Logger
+DefaultDependencies=no
+Before=poweroff.target halt.target reboot.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/local/bin/logger1.py
+RemainAfterExit=yes
+
+[Install]
+WantedBy=halt.target poweroff.target reboot.target
+

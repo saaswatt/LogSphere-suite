@@ -31,51 +31,43 @@ LogSphere                         # Root project directory
 - Basic knowledge of **terminal commands**
 
 ## 📥 Installation
-**Clone the repository:**
+### 🧬 Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/logger-tool.git
-cd scripts
+git clone https://github.com/saaswatt/LogSphere-suite.git
+cd LogSphere
 ```
-
-### (Optional) Create a virtual environment:
+- Copy the **logouts.py** file in 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+/usr/local/bin
 ```
-
+- Copy the **logger-login serivce** in
+```bash
+~/.config/systemd/user
+```
+- Copy the **logger-logout service** in
+```bash
+/etc/systemd/system
+```
 
 ## 🔧 Configuration
+### Follow these steps to set up **LogSphere** correctly on your system:
 
-**Copy the service files to the systemd directory:**
+- For **logger-login service**, type the following activation commands:
 ```bash
-sudo cp scripts/services/logger-login.service /etc/systemd/system/
-sudo cp scripts/services/logger-logout.service /etc/systemd/system/
-```
-
-Reload systemd and enable the services:
-```bash
+sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
-sudo systemctl enable logger-login.service
+sudo systemctl --user enable logger-login.service
+sudo systemctl --user start logger-login.service
+sudo systemctl --user status logger-login.service
+```
+- For **logger-logout service**, type the following activation commands:
+``` bash
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
 sudo systemctl enable logger-logout.service
-sudo systemctl start logger-login.service
 sudo systemctl start logger-logout.service
+sudo systemctl user status logger-logout.service
 ```
-
-## 📊 Usage
-
-- Logs are stored in the folder defined by the script (recommended: **dynamic path inside user’s home directory**).
-
-- **Check service status:**
-```bash
-systemctl status logger-login.service
-systemctl status logger-logout.service
-```
-
-## 🧩 Example Log Output
-Logged in at: 25-08-18 17:28:00 <br>
-Logged out at: 25-08-18 19:23:41 
-
----
 
 ## 📬 Contact
 

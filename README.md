@@ -12,8 +12,8 @@ A **command-line tool (CLI)** to automatically log user **Login and Logout Time 
 LogSphere                         # Root project directory
 │
 ├── scripts/                      # Python scripts
-│   ├── login_logger.py           # Logs login time and date
-│   └── logout_logger.py          # Logs logout time and date
+│   ├── logins.py                 # Logs login time and date
+│   └── logouts.py                # Logs logout time and date
 │
 ├── services/                     # Systemd service unit files
 │   ├── logger-login.service      # Login tracking service

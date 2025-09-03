@@ -54,8 +54,8 @@ cd LogSphere
 
 - For **logger-login service**, type the following activation commands:
 ```bash
-sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
+sudo systemctl daemon-reexec
 sudo systemctl --user enable logger-login.service
 sudo systemctl --user start logger-login.service
 sudo systemctl --user status logger-login.service
@@ -66,7 +66,7 @@ sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
 sudo systemctl enable logger-logout.service
 sudo systemctl restart logger-logout.service
-sudo systemctl user status logger-logout.service
+sudo systemctl status logger-logout.service
 ```
 
 ## 📬 Contact

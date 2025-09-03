@@ -65,7 +65,7 @@ sudo systemctl --user status logger-login.service
 sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
 sudo systemctl enable logger-logout.service
-sudo systemctl start logger-logout.service
+sudo systemctl restart logger-logout.service
 sudo systemctl user status logger-logout.service
 ```
 

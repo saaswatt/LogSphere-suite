@@ -8,8 +8,8 @@ __pycache__/
 # -----------------------------
 # Local login/logout logs (do NOT push)
 # -----------------------------
-login_logs/
-*.log
+logs/
+*.jsonl
 
 # -----------------------------
 # Virtual environments / env files

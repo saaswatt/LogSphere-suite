@@ -1,0 +1,14 @@
+[Unit]
+Description=LogSphere User Logout Tracker
+DefaultDependencies=no
+Before=shutdown.target halt.target reboot.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/local/bin/tracker.py logout
+RuntimeDirectory=logsphere
+
+[Install]
+WantedBy=halt.target
+WantedBy=poweroff.target
+WantedBy=reboot.target

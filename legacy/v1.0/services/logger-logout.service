@@ -1,11 +1,11 @@
-[Unit]
+﻿[Unit]
 Description=Logout Time Logger
 DefaultDependencies=no
 Before=poweroff.target halt.target reboot.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/python3 /usr/local/bin/logger1.py
+ExecStart=/usr/bin/python3 /usr/local/bin/logouts.py
 RemainAfterExit=yes
 User=<your_username>
 

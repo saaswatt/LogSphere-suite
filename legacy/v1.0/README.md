@@ -1,0 +1,89 @@
+# 🛡️ LogSphere v1.0 (Legacy)
+
+![Build Status](https://img.shields.io/badge/Status-Inactive-red?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-1.0-blue?style=for-the-badge)
+>
+>- This folder contains **Phase 1 of the LogSphere project**, which focused on building the foundation for     >tracking user logins and logouts using Python and systemd services.
+>- This version laid the groundwork for v2.0 by proving the core concept of session tracking.  
+>- It has now been archived in favor of the enhanced **User Session Tracker (v2.0)**
+>
+>## 🏁 Note
+>- This code is kept for historical reference only.  
+>- For the current version of LogSphere, please see the main project directory.
+
+A **command-line tool (CLI)** to automatically log user **Login and Logout Time and Dates** on Linux systems.
+
+## 🚀 Features
+- Logs **login time and date** for each user.
+- Logs **logout time and date** for each user.
+- Works seamlessly with **systemd** for automatic tracking.
+
+## 📂 Project Structure
+```bash
+LogSphere                         # Root project directory
+│
+├── scripts/                      # Python scripts
+│   ├── logins.py                 # Logs login time and date
+│   └── logouts.py                # Logs logout time and date
+│
+├── services/                     # Systemd service unit files
+│   ├── logger-login.service      # Login tracking service
+│   └── logger-logout.service     # Logout tracking service
+│
+├── LICENSE
+├── README.md                     # Documentation
+└── requirements.txt              # Dependencies (if any in future)
+
+   ```
+
+## ⚙️ Prerequisites
+- Linux system with **systemd** support
+- Python 3.x installed
+- Basic knowledge of **terminal commands**
+
+## 📥 Installation
+### 🧬 Clone the Repository
+```bash
+git clone https://github.com/saaswatt/LogSphere-suite.git
+cd LogSphere
+```
+- Copy the **logouts.py** file in 
+```bash
+/usr/local/bin
+```
+- Copy the **logger-login serivce** in
+```bash
+~/.config/systemd/user
+```
+- Copy the **logger-logout service** in
+```bash
+/etc/systemd/system
+```
+
+## 🔧 Configuration
+### Follow these steps to set up **LogSphere** correctly on your system:
+
+- For **logger-login service**, type the following activation commands:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl daemon-reexec
+sudo systemctl --user enable logger-login.service
+sudo systemctl --user start logger-login.service
+sudo systemctl --user status logger-login.service
+```
+- For **logger-logout service**, type the following activation commands:
+``` bash
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl enable logger-logout.service
+sudo systemctl restart logger-logout.service
+sudo systemctl status logger-logout.service
+```
+
+## 📬 Contact
+
+If you encounter any issues with setup or have suggestions for improvements, feel free to reach out:
+
+- LinkedIn: [Saswat Kumar Pandey](https://www.linkedin.com/in/saswatkumarpandey)  
+
+I’ll be happy to connect and help out.

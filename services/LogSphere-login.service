@@ -1,0 +1,12 @@
+[Unit]
+Description=LogSphere User Login Tracker
+After=graphical.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/local/bin/tracker.py login
+# No User= here; the script uses getpass to detect the actual logged-in user
+RuntimeDirectory=logsphere
+
+[Install]
+WantedBy=default.target

@@ -1,78 +1,91 @@
-# 🛡️ LogSphere
+# 🛡️ LogSphere v2.0 – User Session Tracker
 
-A **command-line tool (CLI)** to automatically log user **Login and Logout Time and Dates** on Linux systems.
+![Build Status](https://img.shields.io/badge/Status-Active-green?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-2.0-blue?style=for-the-badge)
 
-## 🚀 Features
-- Logs **login time and date** for each user.
-- Logs **logout time and date** for each user.
-- Works seamlessly with **systemd** for automatic tracking.
+LogSphere is a **modular Linux user session tracking and auditing tool**, designed to provide structured, machine-readable logs of login and logout events.  
+It is built with **Python** and integrates seamlessly with **systemd** for reliable background execution.
 
-## 📂 Project Structure
+---
+
+## 🚀 What's New in v2.0
+- ✅ **Session-based tracking** with unique `session_ids`
+- 👤 **User identification** – supports multi-user Linux systems
+- 🖥️ **TTY tracking** (preparing for multi-terminal monitoring)
+- 📜 **Structured JSONL logs** stored in `logs/user_sessions.jsonl`
+- 🧹 **Cleaner and more maintainable codebase** (`tracker.py`)
+
+---
+
+## 📂 Directory Structure
 ```bash
-LogSphere                         # Root project directory
+LogSphere/                       # Root project directory
 │
-├── scripts/                      # Python scripts
-│   ├── logins.py                 # Logs login time and date
-│   └── logouts.py                # Logs logout time and date
+├── legacy/                      # Archived versions
+│   └── v1.0/                    # Phase 1 (basic login/logout tracker)
+│       ├── scripts/             # Old Python scripts
+│       ├── services/            # Old systemd service unit files
+│       └── README.md            # Deprecated phase documentation
 │
-├── services/                     # Systemd service unit files
-│   ├── logger-login.service      # Login tracking service
-│   └── logger-logout.service     # Logout tracking service
+├── logs/                        # Runtime logs (not tracked by Git)
+│   └── user_sessions.jsonl      # Session log file
 │
+├── scripts/                     # Active Python scripts
+│   └── tracker.py               # Main v2.0 session tracker
+│
+├── services/                    # Active systemd service files
+│   ├── LogSphere-login.service
+│   └── LogSphere-logout.service
+│
+├── .gitignore                   # Git ignore file (excludes logs)
 ├── LICENSE
-├── README.md                     # Documentation
-└── requirements.txt              # Dependencies (if any in future)
-
-   ```
+└── README.md                    # This file
+```
 
 ## ⚙️ Prerequisites
 - Linux system with **systemd** support
-- Python 3.x installed
-- Basic knowledge of **terminal commands**
+- **Python 3.x** installed
+- Basic knowledge of **terminal commands** 
 
-## 📥 Installation
-### 🧬 Clone the Repository
+## 📥 Installation & Setup
+### Clone the Repository
 ```bash
 git clone https://github.com/saaswatt/LogSphere-suite.git
 cd LogSphere
 ```
-- Copy the **logouts.py** file in 
+
+## 📂 File Setup
+- Ensure tracker.py is in the scripts/ directory (or move it there).
+- Copy the LogSphere-login.service and LogSphere-logout.service files to:
 ```bash
-/usr/local/bin
-```
-- Copy the **logger-login serivce** in
-```bash
-~/.config/systemd/user
-```
-- Copy the **logger-logout service** in
-```bash
-/etc/systemd/system
+/etc/systemd/system #For System-wide coverage
 ```
 
-## 🔧 Configuration
-### Follow these steps to set up **LogSphere** correctly on your system:
-
-- For **logger-login service**, type the following activation commands:
+## 🔧 Enable and Start Services
+### Login & Logout Services
 ```bash
-sudo systemctl daemon-reload
-sudo systemctl daemon-reexec
-sudo systemctl --user enable logger-login.service
-sudo systemctl --user start logger-login.service
-sudo systemctl --user status logger-login.service
-```
-- For **logger-logout service**, type the following activation commands:
-``` bash
 sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
-sudo systemctl enable logger-logout.service
-sudo systemctl restart logger-logout.service
-sudo systemctl status logger-logout.service
+sudo systemctl enable LogSphere-login.service
+sudo systemctl enable LogSphere-logout.service
+sudo systemctl start LogSphere-login.service
+sudo systemctl start LogSphere-logout.service
 ```
+- Check the `user_sessions.jsonl` in your `logs` directory for the logs.
+
+## 🧪 Testing
+- After setup, try logging out and logging back in.
+- Your events should now appear in:
+```bash
+logs/user_sessions.jsonl
+```
+
+### Each entry will include:
+- `session_id` (UUID)
+- `user` (logged-in username)
+- `tty` (if available)
+- `login_time` & `logout_time`
 
 ## 📬 Contact
-
-If you encounter any issues with setup or have suggestions for improvements, feel free to reach out:
-
-- LinkedIn: [Saswat Kumar Pandey](https://www.linkedin.com/in/saswatkumarpandey)  
-
-I’ll be happy to connect and help out.
+ If you encounter any issues with setup or have suggestions for improvements, feel free to reach out:
+ - LinkedIn: [Saswat Kumar Pandey](https://www.linkedin.com/in/saswatkumarpandey)  

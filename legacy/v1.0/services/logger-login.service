@@ -3,7 +3,7 @@ Description=Login Time Logger
 After=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/python3 %h/LogSphere/scripts/logger.py
+ExecStart=/usr/bin/python3 %h/LogSphere/legacy/v1.0/scripts/logins.py
 Type=oneshot
 
 [Install]

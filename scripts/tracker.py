@@ -31,8 +31,9 @@ if ACTION not in ["login", "logout"]:
     sys.exit("Invalid action. Use 'login' or 'logout'.")
 
 def log_entry(entry):
+    newline = "\n\n" if entry.get("logout_time") else "\n"
     with open(LOGFILE, "a") as f:
-        f.write(json.dumps(entry) + "\n")
+        f.write(json.dumps(entry) + newline)
 
 if ACTION == "login":
     session_id = str(uuid.uuid4())

@@ -1,0 +1,6 @@
+[Unit]
+Description=Send Daily LogSphere Logs
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/dailyMail.py

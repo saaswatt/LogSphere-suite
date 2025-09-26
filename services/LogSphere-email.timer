@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer to run LogSphere-email.service saily at 12:00am
+
+[Timer]
+Unit=LogSphere-email.service
+OnCalendar=*-*-* 00:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -12,6 +12,13 @@ logs/
 *.jsonl
 
 # -----------------------------
+# Credentials / sensitive info
+# -----------------------------
+credentials/
+images/
+
+
+# -----------------------------
 # Virtual environments / env files
 # -----------------------------
 venv/

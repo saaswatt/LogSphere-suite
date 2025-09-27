@@ -23,6 +23,9 @@ It is built with **Python** and integrates seamlessly with **systemd** for relia
 - 🖥️ **TTY tracking** (preparing for multi-terminal monitoring)
 - 📜 **Structured JSONL logs** stored in `logs/user_sessions.jsonl`
 - 📧 **New Email Alert Service** (Beta) – Daily log summary emailed automatically
+> **Note:** The email feature currently requires an active internet connection at **12:00 AM**.  
+> Future releases will include network-awareness and retry logic.
+
 - 🧹 **Cleaner and more maintainable codebase** (`tracker.py`)
 
 ---

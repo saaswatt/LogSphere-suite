@@ -4,6 +4,8 @@ Content:
 Logs in jsonl format
 """
 
+import sys
+import socket
 import os
 import ssl
 import json
@@ -71,8 +73,16 @@ except smtplib.SMTPDataError:
     EMAIL_STATUS = "FAILED: Data error"
 except smtplib.SMTPException:
     EMAIL_STATUS = "FAILED: Other SMTP error"
-except Exception:  # pylint: disable=broad-exception-caught
-    EMAIL_STATUS = "FAILED: Unexpected error"
+except socket.gaierror:
+    EMAIL_STATUS = "FAILED: DNS Resolution Error"
+except socket.timeout:
+    EMAIL_STATUS = "FAILED: NETWORK TIMEOUT (SMTP server unreachable)"
+except ConnectionRefusedError:
+    EMAIL_STATUS = "FAILED: Connection Refused (No route to SMTP server)"
+except ConnectionResetError:
+    EMAIL_STATUS = "FAILED: Connection Reset (Server dropped connection)"
+except Exception as e: #pylint: disable=broad-except
+    EMAIL_STATUS = f"FAILED: Unexpected Error - {repr(e)}"
 
 
 now = datetime.now().isoformat()
@@ -82,3 +92,6 @@ log_entry = {"timestamp": now, "event": "Daily Log Sent", "status": EMAIL_STATUS
 with open(LOG_FILE, "a", encoding="utf-8") as log_track:
     json.dump(log_entry, log_track)
     log_track.write("\n")
+
+if EMAIL_STATUS.startswith("FAILED"):
+    sys.exit(1)

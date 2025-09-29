@@ -48,7 +48,7 @@ if ACTION not in ["login", "logout"]:
 
 # --- Helper: Write JSONL entry ---
 def log_entry(entry):
-    """"
+    """
     Log Entry format
     """
     with open(LOGFILE, "a", encoding="utf-8") as f:
